@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "357671504317",
+    "firebase_url": "https://bulbhub-e28b5.firebaseio.com",
+    "project_id": "bulbhub-e28b5",
+    "storage_bucket": "bulbhub-e28b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:357671504317:android:3cae5365d91f4c1940aad4",
+        "android_client_info": {
+          "package_name": "com.example.bulbhub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "357671504317-9p28lbpsot46jn6qd219q8plhmill5mn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bulbhub",
+            "certificate_hash": "b3b9d94b7a79b4ef0acf30adaf51e6979e724d8b"
+          }
+        },
+        {
+          "client_id": "357671504317-kuiks4srqkoqoae14ho622ecavv35hik.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgoQDgwFS6OPdoN7Z88jOQTIHI2bjL7wM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "357671504317-kuiks4srqkoqoae14ho622ecavv35hik.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
