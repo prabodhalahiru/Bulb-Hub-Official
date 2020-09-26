@@ -151,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
                                  loadingBar.dismiss();
 
                                 Intent intent = new Intent(LoginActivity.this, MazdaActivity.class);
-                                //Prevalent.currentOnlineUser = usersData; //newly
+                                Prevalent.currentOnlineUser = usersData; //newly
                                 startActivity(intent);
                             }
                         }
