@@ -1,7 +1,9 @@
 package com.example.bulbhub;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.view.ViewGroup;
@@ -127,10 +129,54 @@ public class MazdaActivity extends AppCompatActivity {
         return true;
     }
 
+
     @Override
-    public boolean onSupportNavigateUp() {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int id = item.getItemId();
+
+   //    if (id == R.id.action_settings)
+   //     {
+   //         return true;
+   //     }
+
+        return super.onOptionsItemSelected(item);
+    }
+    @SuppressWarnings("StatementWithEmptyBody")
+      @Override
+      public boolean onSupportNavigateUp(MenuItem item) {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+
+        int id = item.getItemId();
+
+        if (id == R.id.nav_cart)
+        {
+
+        }
+        else if (id == R.id.nav_orders)
+        {
+
+        }
+        else if (id == R.id.nav_category)
+        {
+
+        }
+        else if (id == R.id.nav_settings)
+        {
+            Intent intent = new Intent(MazdaActivity.this, SettingActivity.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.nav_logout)
+        {
+            Paper.book().destroy();
+
+            Intent intent = new Intent(MazdaActivity.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        }
+
     }
 }
