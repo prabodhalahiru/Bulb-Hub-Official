@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -122,7 +123,7 @@ public class MazdaActivity extends AppCompatActivity {
         adapter.startListening();
     }
 
-    @Override
+   @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.mazda, menu);
@@ -131,6 +132,7 @@ public class MazdaActivity extends AppCompatActivity {
 
 
     @Override
+    //public boolean onOptionsItemSelected(MenuItem item){
     public boolean onOptionsItemSelected(MenuItem item)
     {
         int id = item.getItemId();
@@ -143,11 +145,12 @@ public class MazdaActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     @SuppressWarnings("StatementWithEmptyBody")
-      @Override
-      public boolean onSupportNavigateUp(MenuItem item) {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
+    public boolean onNavigationItemSelected(MenuItem item){
+      // @Override
+      //public boolean onSupportNavigateUp(MenuItem item) {
+      //  NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+    //    return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+    //            || super.onSupportNavigateUp();
 
         int id = item.getItemId();
 
@@ -178,5 +181,10 @@ public class MazdaActivity extends AppCompatActivity {
             finish();
         }
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+
     }
 }
+
