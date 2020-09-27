@@ -6,7 +6,8 @@ android {
 
     defaultConfig {
         applicationId "com.example.bulbhub"
-        minSdkVersion 16
+       // minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -60,6 +61,8 @@ dependencies {
     //1 = 1
     implementation 'io.paperdb:paperdb:2.7.1'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //5
+    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
