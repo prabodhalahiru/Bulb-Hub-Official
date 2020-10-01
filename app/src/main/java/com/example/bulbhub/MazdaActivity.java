@@ -103,13 +103,23 @@ public class MazdaActivity extends AppCompatActivity {
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter
                 = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model) {
+            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
 
                 holder.txtProductName.setText(model.getPname());
                 holder.txtProductDescription.setText(model.getDescription());
                 holder.txtProductPrice.setText("Price = Rs." + model.getPrice() );
                 Picasso.get().load(model.getImage()).into(holder.imageView);
+
+                holder.imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(MazdaActivity.this, ProductDetailsActivity.class);
+                        intent.putExtra("pid",model.getPid());
+                        startActivity(intent);
+                    }
+                });
             }
+
 
             @NonNull
             @Override
@@ -158,10 +168,10 @@ public class MazdaActivity extends AppCompatActivity {
         {
 
         }
-        else if (id == R.id.nav_orders)
-        {
+     //   else if (id == R.id.nav_orders)
+      //  {
 
-        }
+     //   }
         else if (id == R.id.nav_category)
         {
 
