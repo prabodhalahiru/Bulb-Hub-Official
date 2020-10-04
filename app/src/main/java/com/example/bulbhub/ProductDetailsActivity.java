@@ -2,10 +2,8 @@ package com.example.bulbhub;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.loader.content.Loader;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +21,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.rey.material.widget.FloatingActionButton;
 //import com.rey.material.widget.ImageView;
 //import com.rey.material.widget.TextView;
 import com.squareup.picasso.Picasso;
@@ -37,7 +34,8 @@ import java.util.HashMap;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 
-  //  private Button addToCartButton;
+   private  Button addToCartButton;
+   private Button btn;
     private ImageView productImage;
     private ElegantNumberButton numberButton;
     private TextView productPrice, productDescription, productName;
@@ -49,9 +47,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
 
-        productID = getIntent().getStringExtra("pid");
+        Intent secintent = getIntent();
 
-        //addToCartButton = (Button) findViewById(R.id.pd_add_to_cart_button);
+        productID = secintent.getStringExtra("pid");
+
+        //btn = findViewById(R.id.btn);
+
+        //addToCartButton = (Button) findViewById(R.id.addButton);
         numberButton = (ElegantNumberButton) findViewById(R.id.number_btn);
         productImage = findViewById(R.id.product_image_details);
         productName = findViewById(R.id.product_name_details);
@@ -59,12 +61,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productPrice = findViewById(R.id.product_price_details);
 
         getProductDetails(productID);
-//            addToCartButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//               addingToCartList();
-//           }
-//        });
+           addToCartButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+              addingToCartList();
+          }
+        });
+
     }
 
     private void addingToCartList() {
@@ -77,6 +80,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         saveCurrentTime = currentDate.format(calForDate.getTime());
+       // saveCurrentTime = currentTime.format(calForDate.getTime());
 
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
 
@@ -89,7 +93,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         cartMap.put("quantity", numberButton.getNumber());
         cartMap.put("discount", "");
 
-        cartListRef.child("User View").child(Prevalent.currentOnlineUser.getPhone())
+       cartListRef.child("User View").child(Prevalent.currentOnlineUser.getPhone())
                 .child("Products").child(productID)
                 .updateChildren(cartMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -98,13 +102,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
 
                             cartListRef.child("Admin View").child(Prevalent.currentOnlineUser.getPhone())
-                                    .child("Products").child(productID)
-                                    .updateChildren(cartMap)
+                                   .child("Products").child(productID)
+                                   .updateChildren(cartMap)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful()){
-                                                Toast.makeText(ProductDetailsActivity.this, "Successfully Aded to Cart", Toast.LENGTH_SHORT).show();
+                                              Toast.makeText(ProductDetailsActivity.this, "Successfully Aded to Cart", Toast.LENGTH_SHORT).show();
 
                                                 Intent intent = new Intent(ProductDetailsActivity.this,MazdaActivity.class);
                                                 startActivity(intent);
